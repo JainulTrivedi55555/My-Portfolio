@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research & Publications - Jainul's Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #333;
+      padding: 12px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .navbar .container-fluid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .navbar-brand {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 6px 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .nav-link:hover {
+      background-color: #555;
+      border-radius: 4px;
+      color: #ffdd57;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+    }
+    /* ===== Research Section ===== */
+    .research-section {
+      padding: 4rem 2rem;
+      background-color: #f8f9fa;
+    }
+    .research-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .research-item {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+    }
+    .research-item h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000203;
+      margin-bottom: 0.5rem;
+    }
+    .research-item p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .research-item .details span {
+      display: block;
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-bottom: 0.5rem;
+    }
+    .research-item .details span strong {
+      color: #333;
+    }
+    .research-item .btn-group {
+      margin-top: 1rem;
+    }
+    .research-item .btn {
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+    /* ===== Contact Section ===== */
+    .contact-section {
+      background-color: #000;
+      color: #fff;
+      padding: 60px 20px;
+    }
+    .contact-section .container-fluid {
+      max-width: 1100px;
+    }
+    .contact-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .contact-top h2 {
+      font-size: 3rem;
+      margin: 0;
+      font-weight: 700;
+    }
+    .contact-info {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .contact-info a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+    .contact-info .bi {
+      font-size: 1.25rem;
+      color: #fff;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+    }
+    .icon-item img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: #0d020a;
+      padding: 12px;
+      object-fit: contain;
+      display: block;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .icon-item span {
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+    .icon-item:hover img {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(227,95,185,0.22);
+    }
+    @media (max-width: 767px) {
+      .contact-top {
+        align-items: flex-start;
+      }
+      .contact-top h2 { font-size: 2.2rem; }
+      .contact-info { gap: 18px; margin-top: 8px; }
+      .social-icons { justify-content: flex-start; margin-top: 20px; }
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+        <a href="index.html" class="navbar-brand">Jainul's Portfolio</a>
+        <ul class="nav-links">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="about.html">About</a></li>
+            <li><a class="nav-link" href="projects.html">Projects</a></li>
+            <li><a class="nav-link" href="skills.html">Skills</a></li>
+            <li><a class="nav-link" href="research.html">Research</a></li>
+            <li><a class="nav-link" href="experience.html">Experience</a></li>
+            <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        </div>
+    </nav>
+
+  <section id="research" class="research-section">
+    <div class="container">
+      <h2>Research & Publications</h2>
+
+      <div class="research-item">
+        <h3>Paper 1: Title of Your First Publication</h3>
+        <p>A short, engaging description of your first paper. Explain the problem, your methodology, and the key findings. Mention the impact or contribution of your work.</p>
+        <div class="details">
+          <span><strong>Journal:</strong> Journal of Data Science</span>
+          <span><strong>Date:</strong> Month, Year</span>
+        </div>
+        <div class="btn-group">
+          <a href="#" class="btn btn-primary">Read Paper</a>
+          <a href="#" class="btn btn-outline-secondary">Related Content</a>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h3>Paper 2: Title of Your Second Publication</h3>
+        <p>A brief summary of your second paper, highlighting the research question and main results. This section is perfect for describing your contribution to the field.</p>
+        <div class="details">
+          <span><strong>Journal:</strong> International Journal of AI</span>
+          <span><strong>Date:</strong> Month, Year</span>
+        </div>
+        <div class="btn-group">
+          <a href="#" class="btn btn-primary">Read Paper</a>
+          <a href="#" class="btn btn-outline-secondary">Related Content</a>
+        </div>
+      </div>
+
+      <div class="research-item">
+        <h3>Research Work: Title of Your Research Project</h3>
+        <p>A detailed description of the research project you conducted with your professor. Explain the goal of the research, your specific role, and what you learned from the experience. This shows your practical research skills.</p>
+        <div class="details">
+          <span><strong>Professor:</strong> Professor's Full Name</span>
+          <span><strong>Related Content:</strong> Related references (e.g., project report, dataset, code repository)</span>
+        </div>
+        <div class="btn-group">
+          <a href="#" class="btn btn-outline-secondary">View Related Content</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="container-fluid">
+      <div class="contact-top">
+        <h2>Contact Me</h2>
+        <div class="contact-info">
+          <a href="mailto:jtrivedi@smu.edu">
+            <i class="bi bi-envelope-fill"></i>
+            <span>jtrivedi@smu.edu</span>
+          </a>
+          <a href="mailto:jainultrivedi0604@gmail.com">
+            <i class="bi bi-envelope-fill"></i>
+            <span>jainultrivedi0604@gmail.com</span>
+          </a>
+          <a href="tel:4699474140">
+            <i class="bi bi-telephone-fill"></i>
+            <span>469-947-4140</span>
+          </a>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a class="icon-item" href="https://www.linkedin.com/in/jainultrivedi" target="_blank" aria-label="LinkedIn">
+          <img src="images/contact/1.png" alt="LinkedIn">
+          <span>LinkedIn</span>
+        </a>
+        <a class="icon-item" href="https://github.com/JainulTrivedi55555" target="_blank" aria-label="GitHub">
+          <img src="images/contact/3.png" alt="GitHub">
+          <span>GitHub</span>
+        </a>
+        <a class="icon-item" href="https://medium.com/@jainultrivedi55555" target="_blank" aria-label="Medium">
+          <img src="images/contact/4.png" alt="Medium">
+          <span>Medium</span>
+        </a>
+        <a class="icon-item" href="https://www.kaggle.com/jainultrivedi1" target="_blank" aria-label="Kaggle">
+          <img src="images/contact/2.png" alt="Kaggle">
+          <span>Kaggle</span>
+        </a>
+        <a class="icon-item" href="https://leetcode.com/u/91ikk5rxSj/" target="_blank" aria-label="Leetcode">
+          <img src="images/contact/5.png" alt="Leetcode">
+          <span>Leetcode</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
