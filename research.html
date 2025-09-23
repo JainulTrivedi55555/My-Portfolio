@@ -7,16 +7,18 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       line-height: 1.6;
       background-color: #f9f9f9;
       color: #000000;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
+    body.fade-in { opacity: 1; }
+
     .navbar {
       position: sticky;
       top: 0;
@@ -25,56 +27,19 @@
       padding: 12px 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    .navbar .container-fluid {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .navbar-brand {
-      color: #fff;
-      font-size: 1.3rem;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 24px;
-      margin: 0;
-      padding: 0;
-    }
+    .navbar .container-fluid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .navbar-brand { color: #fff; font-size: 1.3rem; font-weight: bold; text-decoration: none; }
+    .nav-links { list-style: none; display: flex; gap: 24px; margin: 0; padding: 0; }
     .nav-link {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 6px 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #fff; text-decoration: none; font-size: 1rem;
+      padding: 6px 8px; transition: background-color 0.3s ease, color 0.3s ease;
     }
-    .nav-link:hover {
-      background-color: #000000;
-      border-radius: 4px;
-      color: #ffdd57;
-    }
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-      }
-    }
+    .nav-link:hover { background-color: #000000; border-radius: 4px; color: #ffdd57; }
+    @media (max-width: 768px) { .nav-links { flex-wrap: wrap; gap: 12px; justify-content: center; } }
+
     /* ===== Research Section ===== */
-    .research-section {
-      padding: 4rem 2rem;
-      background-color: #f8f9fa;
-    }
-    .research-section h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
+    .research-section { padding: 4rem 2rem; background-color: #f8f9fa; }
+    .research-section h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; text-align: center; }
     .research-item {
       background-color: #fff;
       padding: 2rem;
@@ -82,132 +47,67 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       margin-bottom: 2rem;
     }
-    .research-item h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #000203;
-      margin-bottom: 0.5rem;
-    }
-    .research-item p {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 1rem;
-    }
-    .research-item .details span {
-      display: block;
-      font-size: 0.9rem;
-      color: #6c757d;
-      margin-bottom: 0.5rem;
-    }
-    .research-item .details span strong {
-      color: #333;
-    }
-    .research-item .btn-group {
-      margin-top: 1rem;
-    }
-    .research-item .btn {
-      font-weight: 600;
-      border-radius: 999px;
-      padding: 0.4rem 1rem;
-      font-size: 0.85rem;
-      text-decoration: none;
-    }
+    .research-item h3 { font-size: 1.5rem; font-weight: 700; color: #000203; margin-bottom: 0.5rem; }
+    .research-item p { font-size: 1rem; color: #555; margin-bottom: 1rem; }
+    .research-item .details span { display: block; font-size: 0.9rem; color: #6c757d; margin-bottom: 0.5rem; }
+    .research-item .details span strong { color: #333; }
+    .research-item .btn-group { margin-top: 1rem; }
+    .research-item .btn { font-weight: 600; border-radius: 999px; padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none; }
+
     /* ===== Contact Section ===== */
-    .contact-section {
-      background-color: #000;
-      color: #fff;
-      padding: 60px 20px;
-    }
-    .contact-section .container-fluid {
-      max-width: 1100px;
-    }
-    .contact-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .contact-top h2 {
-      font-size: 3rem;
-      margin: 0;
-      font-weight: 700;
-    }
-    .contact-info {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-    .contact-info a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1.05rem;
-    }
-    .contact-info .bi {
-      font-size: 1.25rem;
-      color: #fff;
-    }
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 36px;
-      flex-wrap: wrap;
-      margin-top: 36px;
-    }
-    .icon-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: #fff;
-    }
+    .contact-section { background-color: #000; color: #fff; padding: 60px 20px; }
+    .contact-section .container-fluid { max-width: 1100px; }
+    .contact-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .contact-top h2 { font-size: 3rem; margin: 0; font-weight: 700; }
+    .contact-info { display: flex; gap: 28px; align-items: center; }
+    .contact-info a { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 500; font-size: 1.05rem; }
+    .contact-info .bi { font-size: 1.25rem; color: #fff; }
+    .social-icons { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; margin-top: 36px; }
+    .icon-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
     .icon-item img {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background-color: #0d020a;
-      padding: 12px;
-      object-fit: contain;
-      display: block;
+      width: 72px; height: 72px; border-radius: 50%; background-color: #0d020a;
+      padding: 12px; object-fit: contain; display: block;
       transition: transform .25s ease, box-shadow .25s ease;
     }
-    .icon-item span {
-      margin-top: 8px;
-      font-size: 1rem;
-    }
-    .icon-item:hover img {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(227,95,185,0.22);
-    }
+    .icon-item span { margin-top: 8px; font-size: 1rem; }
+    .icon-item:hover img { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(227,95,185,0.22); }
+
     @media (max-width: 767px) {
-      .contact-top {
-        align-items: flex-start;
-      }
+      .contact-top { align-items: flex-start; }
       .contact-top h2 { font-size: 2.2rem; }
       .contact-info { gap: 18px; margin-top: 8px; }
       .social-icons { justify-content: flex-start; margin-top: 20px; }
     }
+    .fade-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-item.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
   </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container-fluid">
-        <a href="index.html" class="navbar-brand">My Portfolio</a>
-        <ul class="nav-links">
-            <li><a class="nav-link" href="index.html">Home</a></li>
-            <li><a class="nav-link" href="about.html">About</a></li>
-            <li><a class="nav-link" href="projects.html">Projects</a></li>
-            <li><a class="nav-link" href="skills.html">Skills</a></li>
-            <li><a class="nav-link" href="research.html">Research</a></li>
-            <li><a class="nav-link" href="experience.html">Experience</a></li>
-            <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-        </div>
-    </nav>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <a href="index.html" class="navbar-brand">My Portfolio</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="skills.html">Skills</a></li>
+        <li><a class="nav-link" href="research.html">Research</a></li>
+        <li><a class="nav-link" href="experience.html">Work Experience</a></li>
+        <li><a class="nav-link" href="coursework.html">Coursework</a></li>
+        <li><a class="nav-link" href="certifications.html">Certifications</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <section id="research" class="research-section">
     <div class="container">
@@ -250,7 +150,6 @@
           <a href="#" class="btn btn-outline-secondary">View Related Content</a>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -259,43 +158,73 @@
       <div class="contact-top">
         <h2>Contact Me</h2>
         <div class="contact-info">
-          <a href="mailto:jtrivedi@smu.edu">
-            <i class="bi bi-envelope-fill"></i>
-            <span>jtrivedi@smu.edu</span>
-          </a>
-          <a href="mailto:jainultrivedi0604@gmail.com">
-            <i class="bi bi-envelope-fill"></i>
-            <span>jainultrivedi0604@gmail.com</span>
-          </a>
-          <a href="tel:4699474140">
-            <i class="bi bi-telephone-fill"></i>
-            <span>469-947-4140</span>
-          </a>
+          <a href="mailto:jtrivedi@smu.edu"><i class="bi bi-envelope-fill"></i><span>jtrivedi@smu.edu</span></a>
+          <a href="mailto:jainultrivedi0604@gmail.com"><i class="bi bi-envelope-fill"></i><span>jainultrivedi0604@gmail.com</span></a>
+          <a href="tel:4699474140"><i class="bi bi-telephone-fill"></i><span>469-947-4140</span></a>
         </div>
       </div>
       <div class="social-icons">
-        <a class="icon-item" href="https://www.linkedin.com/in/jainultrivedi" target="_blank" aria-label="LinkedIn">
-          <img src="images/contact/1.png" alt="LinkedIn">
-          <span>LinkedIn</span>
-        </a>
-        <a class="icon-item" href="https://github.com/JainulTrivedi55555" target="_blank" aria-label="GitHub">
-          <img src="images/contact/3.png" alt="GitHub">
-          <span>GitHub</span>
-        </a>
-        <a class="icon-item" href="https://medium.com/@jainultrivedi55555" target="_blank" aria-label="Medium">
-          <img src="images/contact/4.png" alt="Medium">
-          <span>Medium</span>
-        </a>
-        <a class="icon-item" href="https://www.kaggle.com/jainultrivedi1" target="_blank" aria-label="Kaggle">
-          <img src="images/contact/2.png" alt="Kaggle">
-          <span>Kaggle</span>
-        </a>
-        <a class="icon-item" href="https://leetcode.com/u/91ikk5rxSj/" target="_blank" aria-label="Leetcode">
-          <img src="images/contact/5.png" alt="Leetcode">
-          <span>Leetcode</span>
-        </a>
+        <a class="icon-item" href="https://www.linkedin.com/in/jainultrivedi" target="_blank"><img src="images/contact/1.png" alt="LinkedIn"><span>LinkedIn</span></a>
+        <a class="icon-item" href="https://github.com/JainulTrivedi55555" target="_blank"><img src="images/contact/3.png" alt="GitHub"><span>GitHub</span></a>
+        <a class="icon-item" href="https://medium.com/@jainultrivedi55555" target="_blank"><img src="images/contact/4.png" alt="Medium"><span>Medium</span></a>
+        <a class="icon-item" href="https://www.kaggle.com/jainultrivedi1" target="_blank"><img src="images/contact/2.png" alt="Kaggle"><span>Kaggle</span></a>
+        <a class="icon-item" href="https://leetcode.com/u/91ikk5rxSj/" target="_blank"><img src="images/contact/5.png" alt="Leetcode"><span>Leetcode</span></a>
       </div>
     </div>
   </section>
+
+  <script>
+    // Fade in on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+
+    // Fade out on link click
+    const links = document.querySelectorAll('a.nav-link, .btn, .icon-item');
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+          e.preventDefault();
+          document.body.classList.remove('fade-in');
+          document.body.style.opacity = 0;
+          setTimeout(() => { window.location = href; }, 400);
+        }
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const fadeItems = document.querySelectorAll('.fade-item');
+
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target); // Fade only once
+        }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    fadeItems.forEach(item => {
+        observer.observe(item);
+
+        // Force show if already in viewport on load
+        const rect = item.getBoundingClientRect();
+        if(rect.top < window.innerHeight) {
+        item.classList.add('show');
+        observer.unobserve(item);
+        }
+    });
+
+    // Optional: update observer on window resize or load for layout shifts
+    window.addEventListener('load', () => fadeItems.forEach(item => observer.observe(item)));
+    window.addEventListener('resize', () => fadeItems.forEach(item => observer.observe(item)));
+    });
+    </script>
+
 </body>
 </html>

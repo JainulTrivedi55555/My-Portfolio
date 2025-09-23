@@ -14,7 +14,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      background-color: #000; /* Updated to black */
+      background-color: #000;
       color: #333;
     }
     .navbar {
@@ -79,7 +79,12 @@
     .skill-card {
       flex: 0 1 140px; background: #fff; border-radius: 10px; text-align: center;
       padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.6s ease;
+      cursor: pointer;
+      opacity: 0; /* start hidden for fade-in */
+    }
+    .skill-card.show {
+      opacity: 1;
     }
     .skill-card:hover {
       transform: translateY(-4px);
@@ -94,11 +99,49 @@
     .skill-card p {
       font-size: 0.75rem; color: #666; margin: 0; line-height: 1.2;
     }
+    /* Languages Section Styles */
+    .languages-section {
+      background-color: #ffffff;
+      padding: 4rem 2rem;
+      margin-bottom: 0;
+    }
+    .languages-section h2 {
+      font-size: 2rem; font-weight: 700; margin-bottom: 2rem; text-align: center;
+    }
+    .languages-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .language-badge {
+      background-color: #6c757d; 
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.6s ease;
+      cursor: pointer;
+      opacity: 0; /* start hidden for fade-in */
+    }
+    .language-badge.show {
+      opacity: 1;
+    }
+    .language-badge:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
     /* Contact Section Styles */
     .contact-section {
       background-color: #000;
       color: #fff;
       padding: 60px 20px;
+      opacity: 0; /* start hidden for fade-in */
+      transition: opacity 1s ease;
+    }
+    .contact-section.show {
+      opacity: 1;
     }
     .contact-section .container-fluid {
       max-width: 1100px;
@@ -173,6 +216,17 @@
       .contact-info { gap: 18px; margin-top: 8px; }
       .social-icons { justify-content: flex-start; margin-top: 20px; }
     }
+    .fade-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-item.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
   </style>
 </head>
 <body>
@@ -185,7 +239,9 @@
             <li><a class="nav-link" href="projects.html">Projects</a></li>
             <li><a class="nav-link" href="skills.html">Skills</a></li>
             <li><a class="nav-link" href="research.html">Research</a></li>
-            <li><a class="nav-link" href="experience.html">Experience</a></li>
+            <li><a class="nav-link" href="experience.html">Work Experience</a></li>
+            <li><a class="nav-link" href="coursework.html">Coursework</a></li>
+            <li><a class="nav-link" href="certifications.html">Certifications</a></li>
             <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
         </div>
@@ -194,27 +250,39 @@
   <section id="skills" class="skills-section">
     <h2>Skills</h2>
     <div class="skills-grid">
-      <div class="skill-card">
+      <div class="skill-card fade-item">
         <img src="images/skills/1.jpeg" alt="Python Icon">
         <h3>Python</h3>
         <p>Basics to advanced</p>
       </div>
-      <div class="skill-card">
+      <div class="skill-card fade-item">
         <img src="images/skills/2.webp" alt="Data Visualization Icon">
         <h3>Tableau</h3>
         <p>Charts & dashboards</p>
       </div>
-      <div class="skill-card">
+      <div class="skill-card fade-item">
         <img src="images/skills/3.webp" alt="SQL Icon">
         <h3>SQL</h3>
         <p>Queries & optimization</p>
       </div>
-      <div class="skill-card">
+      <div class="skill-card fade-item">
         <img src="images/skills/4.webp" alt="Data Storytelling Icon">
         <h3>Power BI</h3>
         <p>Presenting insights</p>
       </div>
     </div>
+  </section>
+
+  <section id="languages" class="languages-section">
+      <div class="container">
+          <h2 class="text-center mb-4">Languages</h2>
+          <div class="languages-grid">
+              <span class="language-badge fade-item">English (Native/Fluent)</span>
+              <span class="language-badge fade-item">Spanish (Proficient)</span>
+              <span class="language-badge fade-item">Hindi (Native/Fluent)</span>
+              <span class="language-badge fade-item">Gujarati (Native/Fluent)</span>
+          </div>
+      </div>
   </section>
 
   <section id="contact" class="contact-section">
@@ -260,5 +328,22 @@
       </div>
     </div>
   </section>
+
+  <script>
+    const fadeItems = document.querySelectorAll('.fade-item');
+    const contactSection = document.querySelector('.contact-section');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    fadeItems.forEach(item => observer.observe(item));
+    observer.observe(contactSection);
+  </script>
+
 </body>
 </html>

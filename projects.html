@@ -73,8 +73,12 @@
     }
     .projects-section .card {
       border: none; border-radius: 1.25rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.6s ease;
       background-color: #fff; display: flex; flex-direction: column; overflow: hidden;
+      opacity: 0; /* start hidden for fade-in */
+    }
+    .projects-section .card.show {
+      opacity: 1; /* fade-in visible */
     }
     .projects-section .card:hover {
       transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
@@ -121,6 +125,11 @@
       background-color: #000;
       color: #fff;
       padding: 60px 20px;
+      opacity: 0; /* fade-in */
+      transition: opacity 1s ease;
+    }
+    .contact-section.show {
+      opacity: 1;
     }
     .contact-section .container-fluid {
       max-width: 1100px;
@@ -195,6 +204,17 @@
       .contact-info { gap: 18px; margin-top: 8px; }
       .social-icons { justify-content: flex-start; margin-top: 20px; }
     }
+    .fade-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-item.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
   </style>
 </head>
 <body>
@@ -207,7 +227,9 @@
             <li><a class="nav-link" href="projects.html">Projects</a></li>
             <li><a class="nav-link" href="skills.html">Skills</a></li>
             <li><a class="nav-link" href="research.html">Research</a></li>
-            <li><a class="nav-link" href="experience.html">Experience</a></li>
+            <li><a class="nav-link" href="experience.html">Work Experience</a></li>
+            <li><a class="nav-link" href="coursework.html">Coursework</a></li>
+            <li><a class="nav-link" href="certifications.html">Certifications</a></li>
             <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
         </div>
@@ -218,7 +240,7 @@
       <h2>Projects</h2>
       <div class="projects-row">
         <div class="project-col">
-          <div class="card">
+          <div class="card fade-card">
             <img src="images/projects/1.png" class="card-img-top" alt="Project 1 Image">
             <div class="card-body">
               <h5 class="card-title">Project 1</h5>
@@ -231,7 +253,7 @@
           </div>
         </div>
         <div class="project-col">
-          <div class="card">
+          <div class="card fade-card">
             <img src="images/projects/2.png" class="card-img-top" alt="Project 2 Image">
             <div class="card-body">
               <h5 class="card-title">Project 2</h5>
@@ -244,7 +266,7 @@
           </div>
         </div>
         <div class="project-col">
-          <div class="card">
+          <div class="card fade-card">
             <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3 Image">
             <div class="card-body">
               <h5 class="card-title">Project 3</h5>
@@ -303,5 +325,23 @@
       </div>
     </div>
   </section>
+
+  <script>
+    // Fade-in on scroll for project cards
+    const cards = document.querySelectorAll('.fade-card');
+    const contactSection = document.querySelector('.contact-section');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+    observer.observe(contactSection);
+  </script>
+
 </body>
 </html>

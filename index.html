@@ -440,21 +440,23 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       line-height: 1.6;
       background-color: #f9f9f9;
-      color: #000000;
+      color: #000;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
+    body.fade-in { opacity: 1; }
+
     .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background-color: #000000;
+      background-color: #000;
       padding: 12px 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
@@ -483,23 +485,20 @@
       text-decoration: none;
       font-size: 1rem;
       padding: 6px 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     }
     .nav-link:hover {
       background-color: #555;
       border-radius: 4px;
       color: #ffdd57;
+      transform: translateY(-2px);
     }
     @media (max-width: 768px) {
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-      }
+      .nav-links { flex-wrap: wrap; gap: 12px; justify-content: center; }
     }
+
     .hero-section {
-      /* This is the updated code */
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/Background-1.avif');
+      background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/Background-1.avif');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -512,13 +511,10 @@
       align-items: center;
       padding: 100px 20px;
     }
-    .hero-section h1, .hero-section h2 {
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
-    /* Updated badge styles for better visibility on the dark background */
+    .hero-section h1, .hero-section h2 { text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
     .hero-section .badge {
-        background-color: rgba(255, 255, 255, 0.15) !important;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255,255,255,0.15)!important;
+      border: 1px solid rgba(255,255,255,0.2);
     }
     .btn-resume {
       display: inline-block;
@@ -528,20 +524,20 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 50px;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.3s, color 0.3s, transform 0.3s;
     }
     .btn-resume:hover {
       background-color: white;
       color: #333;
+      transform: translateY(-3px);
     }
+
     .contact-section {
       background-color: #000;
       color: #fff;
       padding: 60px 20px;
     }
-    .contact-section .container-fluid {
-      max-width: 1100px;
-    }
+    .contact-section .container-fluid { max-width: 1100px; }
     .contact-top {
       display: flex;
       align-items: center;
@@ -549,11 +545,7 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-    .contact-top h2 {
-      font-size: 3rem;
-      margin: 0;
-      font-weight: 700;
-    }
+    .contact-top h2 { font-size: 3rem; margin: 0; font-weight: 700; }
     .contact-info {
       display: flex;
       gap: 28px;
@@ -567,11 +559,10 @@
       text-decoration: none;
       font-weight: 500;
       font-size: 1.05rem;
+      transition: transform 0.3s;
     }
-    .contact-info .bi {
-      font-size: 1.25rem;
-      color: #fff;
-    }
+    .contact-info a:hover { transform: scale(1.05); }
+    .contact-info .bi { font-size: 1.25rem; color: #fff; }
     .social-icons {
       display: flex;
       justify-content: center;
@@ -593,104 +584,109 @@
       background-color: #0d020a;
       padding: 12px;
       object-fit: contain;
-      display: block;
       transition: transform .25s ease, box-shadow .25s ease;
     }
-    .icon-item span {
-      margin-top: 8px;
-      font-size: 1rem;
-    }
+    .icon-item span { margin-top: 8px; font-size: 1rem; }
     .icon-item:hover img {
       transform: translateY(-6px);
       box-shadow: 0 10px 30px rgba(227,95,185,0.22);
     }
     @media (max-width: 767px) {
-      .contact-top {
-        align-items: flex-start;
-      }
+      .contact-top { align-items: flex-start; }
       .contact-top h2 { font-size: 2.2rem; }
       .contact-info { gap: 18px; margin-top: 8px; }
       .social-icons { justify-content: flex-start; margin-top: 20px; }
     }
+    .fade-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-item.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 <body>
   <nav class="navbar">
-      <div class="container-fluid">
-        <a href="index.html" class="navbar-brand">My Portfolio</a>
-        <ul class="nav-links">
-          <li><a class="nav-link" href="index.html">Home</a></li>
-          <li><a class="nav-link" href="about.html">About</a></li>
-          <li><a class="nav-link" href="projects.html">Projects</a></li>
-          <li><a class="nav-link" href="skills.html">Skills</a></li>
-          <li><a class="nav-link" href="research.html">Research</a></li>
-          <li><a class="nav-link" href="experience.html">Work Experience</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
+    <div class="container-fluid">
+      <a href="index.html" class="navbar-brand">My Portfolio</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="skills.html">Skills</a></li>
+        <li><a class="nav-link" href="research.html">Research</a></li>
+        <li><a class="nav-link" href="experience.html">Work Experience</a></li>
+        <li><a class="nav-link" href="coursework.html">Coursework</a></li>
+        <li><a class="nav-link" href="certifications.html">Certifications</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <section id="home" class="hero-section text-center py-5">
-    <div class="container">
-      <h1 class="display-4 fw-bold mb-3">Jainul Trivedi</h1>
-      <h2 class="lead mb-3">MS in Computer Science @ Southern Methodist University</h2>
-      <h2 class="lead mb-4">Graduate Teaching Assistant (Algorithm Engineering and Artificial Intelligence)</h2>
-      <div class="d-flex flex-wrap justify-content-center gap-2">
-        <span class="badge bg-dark text-white p-2">Artificial Intelligence</span>
-        <span class="badge bg-dark text-white p-2">Machine Learning</span>
-        <span class="badge bg-dark text-white p-2">Deep Learning</span>
-        <span class="badge bg-dark text-white p-2">Data Science</span>
-        <span class="badge bg-dark text-white p-2">Business Analysis</span>
-        <span class="badge bg-dark text-white p-2">System Design</span>
+  <div class="page-content">
+    <section id="home" class="hero-section text-center py-5">
+      <div class="container">
+        <h1 class="display-4 fw-bold mb-3">Jainul Trivedi</h1>
+        <h2 class="lead mb-3">MS in Computer Science @ Southern Methodist University</h2>
+        <h2 class="lead mb-4">Graduate Teaching Assistant (Algorithm Engineering and Artificial Intelligence)</h2>
+        <h2 class="lead mb-4">Awards: Lyle Deans Graduate Scholarship</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <span class="badge bg-dark text-white p-2">Artificial Intelligence</span>
+          <span class="badge bg-dark text-white p-2">Machine Learning</span>
+          <span class="badge bg-dark text-white p-2">Deep Learning</span>
+          <span class="badge bg-dark text-white p-2">Data Science</span>
+          <span class="badge bg-dark text-white p-2">Business Analysis</span>
+          <span class="badge bg-dark text-white p-2">System Design</span>
+        </div>
+        <div class="mt-5">
+          <a href="your-resume.pdf" class="btn-resume">Download Resume</a>
+        </div>
       </div>
-      <div class="mt-5">
-        <a href="your-resume.pdf" class="btn-resume">Download Resume</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <section id="contact" class="contact-section">
     <div class="container-fluid">
       <div class="contact-top">
         <h2>Contact Me</h2>
         <div class="contact-info">
-          <a href="mailto:jtrivedi@smu.edu">
-            <i class="bi bi-envelope-fill"></i>
-            <span>jtrivedi@smu.edu</span>
-          </a>
-          <a href="mailto:jainultrivedi0604@gmail.com">
-            <i class="bi bi-envelope-fill"></i>
-            <span>jainultrivedi0604@gmail.com</span>
-          </a>
-          <a href="tel:4699474140">
-            <i class="bi bi-telephone-fill"></i>
-            <span>469-947-4140</span>
-          </a>
+          <a href="mailto:jtrivedi@smu.edu"><i class="bi bi-envelope-fill"></i><span>jtrivedi@smu.edu</span></a>
+          <a href="mailto:jainultrivedi0604@gmail.com"><i class="bi bi-envelope-fill"></i><span>jainultrivedi0604@gmail.com</span></a>
+          <a href="tel:4699474140"><i class="bi bi-telephone-fill"></i><span>469-947-4140</span></a>
         </div>
       </div>
       <div class="social-icons">
-        <a class="icon-item" href="https://www.linkedin.com/in/jainultrivedi" target="_blank" aria-label="LinkedIn">
-          <img src="images/contact/1.png" alt="LinkedIn">
-          <span>LinkedIn</span>
-        </a>
-        <a class="icon-item" href="https://github.com/JainulTrivedi55555" target="_blank" aria-label="GitHub">
-          <img src="images/contact/3.png" alt="GitHub">
-          <span>GitHub</span>
-        </a>
-        <a class="icon-item" href="https://medium.com/@jainultrivedi55555" target="_blank" aria-label="Medium">
-          <img src="images/contact/4.png" alt="Medium">
-          <span>Medium</span>
-        </a>
-        <a class="icon-item" href="https://www.kaggle.com/jainultrivedi1" target="_blank" aria-label="Kaggle">
-          <img src="images/contact/2.png" alt="Kaggle">
-          <span>Kaggle</span>
-        </a>
-        <a class="icon-item" href="https://leetcode.com/u/91ikk5rxSj/" target="_blank" aria-label="Leetcode">
-          <img src="images/contact/5.png" alt="Leetcode">
-          <span>Leetcode</span>
-        </a>
+        <a class="icon-item" href="https://www.linkedin.com/in/jainultrivedi" target="_blank"><img src="images/contact/1.png" alt="LinkedIn"><span>LinkedIn</span></a>
+        <a class="icon-item" href="https://github.com/JainulTrivedi55555" target="_blank"><img src="images/contact/3.png" alt="GitHub"><span>GitHub</span></a>
+        <a class="icon-item" href="https://medium.com/@jainultrivedi55555" target="_blank"><img src="images/contact/4.png" alt="Medium"><span>Medium</span></a>
+        <a class="icon-item" href="https://www.kaggle.com/jainultrivedi1" target="_blank"><img src="images/contact/2.png" alt="Kaggle"><span>Kaggle</span></a>
+        <a class="icon-item" href="https://leetcode.com/u/91ikk5rxSj/" target="_blank"><img src="images/contact/5.png" alt="Leetcode"><span>Leetcode</span></a>
       </div>
     </div>
   </section>
+
+  <script>
+    // Fade-in when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+
+    // Smooth fade-out before navigating to another page
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('mailto') && !href.startsWith('tel')) {
+          e.preventDefault();
+          document.body.classList.remove('fade-in');
+          setTimeout(() => window.location = href, 300);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
