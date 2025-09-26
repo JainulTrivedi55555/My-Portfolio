@@ -18,27 +18,105 @@
     }
 
     /* ===== Navbar Styling ===== */
-    .navbar { position: sticky; top: 0; z-index: 1000; background-color: #000000; padding: 12px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-    .navbar .container-fluid { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-    .navbar-brand { color: #fff; font-size: 1.3rem; font-weight: bold; text-decoration: none; }
-    .nav-links { list-style: none; display: flex; gap: 24px; margin: 0; padding: 0; }
-    .nav-link { color: #fff; text-decoration: none; font-size: 1rem; padding: 6px 8px; transition: background-color 0.3s ease, color 0.3s ease; }
-    .nav-link:hover { background-color: #000000; border-radius: 4px; color: #ffdd57; }
-    @media (max-width: 768px) { .nav-links { flex-wrap: wrap; gap: 12px; justify-content: center; } }
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #000000;
+      padding: 12px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .navbar .container-fluid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .navbar-brand {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 6px 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .nav-link:hover {
+      background-color: #000000;
+      border-radius: 4px;
+      color: #ffdd57;
+    }
+    @media (max-width: 768px) {
+      .nav-links { flex-wrap: wrap; gap: 12px; justify-content: center; }
+    }
 
     /* ===== Contact Section ===== */
     .contact-section { background-color: #000; color: #fff; padding: 60px 20px; }
     .contact-section .container-fluid { max-width: 1100px; }
-    .contact-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .contact-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
     .contact-top h2 { font-size: 3rem; margin: 0; font-weight: 700; }
-    .contact-info { display: flex; gap: 28px; align-items: center; }
-    .contact-info a { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 500; font-size: 1.05rem; }
+    .contact-info {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .contact-info a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
     .contact-info .bi { font-size: 1.25rem; color: #fff; }
-    .social-icons { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; margin-top: 36px; }
-    .icon-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
-    .icon-item img { width: 72px; height: 72px; border-radius: 50%; background-color: #0d020a; padding: 12px; object-fit: contain; display: block; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+    }
+    .icon-item img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: #0d020a;
+      padding: 12px;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
     .icon-item span { margin-top: 8px; font-size: 1rem; }
-    .icon-item:hover img { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(227,95,185,0.22); }
+    .icon-item:hover img {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(227,95,185,0.22);
+    }
     @media (max-width: 767px) {
       .contact-top { align-items: flex-start; }
       .contact-top h2 { font-size: 2.2rem; }
@@ -59,33 +137,58 @@
       transform: translateY(20px);
       animation: fadeInUp 0.8s forwards;
     }
-    .experience-card:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .experience-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
 
     /* Animation Keyframes */
     @keyframes fadeInUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .card-header { background-color: #000000; color: white; padding: 1rem 1.5rem; font-size: 1.25rem; font-weight: 600; display: flex; justify-content: center; align-items: center; }
+    .card-header {
+      background-color: #000000;
+      color: white;
+      padding: 1rem 1.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .card-body { padding: 1.5rem; }
     .position-title { font-size: 1.5rem; font-weight: 700; }
-    .company-info, .professor-info, .ta-subject { font-size: 1rem; color: #6c757d; display: flex; justify-content: space-between; flex-wrap: wrap; }
+    .company-info, .professor-info, .ta-subject {
+      font-size: 1rem;
+      color: #6c757d;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
     .company-name, .professor { font-weight: bold; color: #343a40; }
     .description { margin-top: 1rem; color: #495057; }
-    .skills-developed h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .skills-developed h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
     .badge-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .badge { font-size: 0.85rem; font-weight: 500; padding: 0.5em 0.8em; border-radius: 1rem; }
+    .badge {
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.5em 0.8em;
+      border-radius: 1rem;
+    }
     .fade-item {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-
-        .fade-item.show {
-        opacity: 1;
-        transform: translateY(0);
+    .fade-item.show {
+      opacity: 1;
+      transform: translateY(0);
     }
-
   </style>
 </head>
 <body>
@@ -110,128 +213,171 @@
     <div class="container">
       <h2 class="text-center mb-5 display-4 fw-bold">Work Experience</h2>
 
+      <!-- Research Assistant -->
       <div class="experience-card research-card mb-5" style="animation-delay:0.1s">
         <div class="card-header">
-          <span class="position-title">Research Assistant</span>
+          <span class="position-title">Research Assistant - ChatSSRN</span>
         </div>
         <div class="card-body">
           <div class="company-info mb-3">
-            <span class="company-name">Southern Methodist University</span>
+            <span class="company-name">Employer: Southern Methodist University</span>
             <span class="date">October 2024 - Present</span>
           </div>
           <div class="professor-info mb-3">
-            <span class="professor"><strong>Professor:</strong> Professor's Name</span>
-            <span class="email"><strong>Email:</strong> <a href="mailto:prof.email@smu.edu">prof.email@smu.edu</a></span>
+            <span class="professor"><strong>Professor:</strong> Dr.Jane Tan</span>
+            <span class="email"><strong>Email:</strong> <a href="janetan@mail.smu.edu">janetan@mail.smu.edu</a></span>
           </div>
           <p class="description">
-            Working on a research project focused on [Your Research Topic]. My role involves [Your work description].
-            I am responsible for [Specific tasks like data collection, model development, etc.].
+            • Maintained and enhanced ChatSSRN, a GenAI-powered research assistant leveraging HPC and NLP to efficiently index and retrieve research abstracts.<br>
+            • Integrated 2024–2025 datasets, improving model accuracy, freshness, and relevance of academic literature recommendations.
           </p>
           <div class="skills-developed mt-4">
             <h4>Skills Developed:</h4>
             <div class="badge-container">
-              <span class="badge bg-primary">Topic Modeling</span>
-              <span class="badge bg-primary">NLP</span>
               <span class="badge bg-primary">Data Analysis</span>
-              <span class="badge bg-primary">PyTorch</span>
-              <span class="badge bg-primary">Research Methodology</span>
+              <span class="badge bg-primary">NLP</span>
+              <span class="badge bg-primary">Research Analysis</span>
+              <span class="badge bg-primary">SQL</span>
+              <span class="badge bg-primary">Python</span>
+              <span class="badge bg-primary">Data Visualization</span>
+              <span class="badge bg-primary">Website Maintenance and Updates</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="experience-card ta-card mb-5" style="animation-delay:0.3s">
+      <!-- Teaching Assistant - Algorithm Engineering -->
+        <div class="experience-card ta-card mb-5" style="animation-delay:0.3s">
         <div class="card-header">
-          <span class="position-title">Teaching Assistant</span>
+            <span class="position-title">Teaching Assistant</span>
         </div>
         <div class="card-body">
-          <div class="ta-subject mb-3">
-            <h5 class="fw-bold">Subject 1: Algorithm Engineering</h5>
-            <span class="date">August 2024 - Present</span>
-            <div class="professor-info mt-2">
-              <span class="professor"><strong>Professor:</strong> Professor's Name</span>
-              <span class="email"><strong>Email:</strong> <a href="mailto:prof.email@smu.edu">prof.email@smu.edu</a></span>
+            <div class="company-info mb-3">
+            <span class="company-name">Algorithm Engineering</span>
+            <span class="date">08/2024 - Present</span>
             </div>
-          </div>
-          <p class="description">
-            Assisted the professor in lectures, graded assignments, and helped students with complex algorithms.
-          </p>
-          <div class="skills-developed mt-4">
+            <div class="professor-info mt-2 text-dark">
+            <span class="professor"><strong>Professor:</strong> Dr. Nurcan Yuruk</span>
+            <span class="email"><strong>Email:</strong> <a href="mailto:nyuruk@mail.smu.edu" class="text-dark">nyuruk@mail.smu.edu</a></span>
+            </div>
+            <p class="description text-dark mt-3">
+            • Supporting students in analyzing algorithm complexity, dynamic programming, and graph-based problem-solving.<br>
+            • Assisting in debugging and optimizing Python/R implementations of advanced algorithms.<br>
+            • Helping design and grade assignments focused on data structures, search/sort strategies, and optimization techniques.
+            </p>
+            <div class="skills-developed mt-4">
             <h4>Skills Developed:</h4>
             <div class="badge-container">
-              <span class="badge bg-success">Algorithm Design</span>
-              <span class="badge bg-success">Problem Solving</span>
-              <span class="badge bg-success">Mentoring</span>
-              <span class="badge bg-success">Communication</span>
+                <span class="badge bg-success">Algorithm Design and Optimization</span>
+                <span class="badge bg-success">Data Structure and Complexity Analysis</span>
+                <span class="badge bg-success">Problem Solving and Debugging</span>
+                <span class="badge bg-success">Programming</span>
+                <span class="badge bg-success">Mentoring</span>
+                <span class="badge bg-success">Communication</span>
             </div>
-          </div>
-
-          <hr class="my-4">
-
-          <div class="ta-subject">
-            <h5 class="fw-bold">Subject 2: Artificial Intelligence</h5>
-            <span class="date">August 2024 - Present</span>
-            <div class="professor-info mt-2">
-              <span class="professor"><strong>Professor:</strong> Professor's Name</span>
-              <span class="email"><strong>Email:</strong> <a href="mailto:prof.email@smu.edu">prof.email@smu.edu</a></span>
             </div>
-          </div>
-          <p class="description">
-            Guided students through AI concepts, machine learning models, and helped in debugging their projects.
-          </p>
-          <div class="skills-developed mt-4">
-            <h4>Skills Developed:</h4>
-            <div class="badge-container">
-              <span class="badge bg-success">Machine Learning</span>
-              <span class="badge bg-success">Deep Learning</span>
-              <span class="badge bg-success">PyTorch</span>
-              <span class="badge bg-success">Public Speaking</span>
-            </div>
-          </div>
         </div>
-      </div>
+        </div>
 
+
+      <!-- Teaching Assistant - Artificial Intelligence -->
+        <div class="experience-card ta-card mb-5" style="animation-delay:0.4s">
+        <div class="card-header">
+            <span class="position-title">Teaching Assistant</span>
+        </div>
+        <div class="card-body">
+            <div class="company-info mb-3">
+            <span class="company-name">Artificial Intelligence</span>
+            <span class="date">08/2024 - Present</span>
+            </div>
+            <div class="professor-info mt-2 text-dark">
+            <span class="professor"><strong>Professor: </strong> Dr. Michael Hahsler</span>
+            <span class="email"><strong>Email:</strong> <a href="mhahsler@lyle.smu.edu" class="text-dark">mhahsler@lyle.smu.edu</a></span>
+            </div>
+            <p class="description text-dark mt-3">
+            • Assisting in teaching core AI topics including Agentic AI, machine learning, and decision-making models.<br>
+            • Guiding students on implementing AI solutions using Python, R, and SQL, with emphasis on model evaluation and deployment.<br>
+            • Mentoring students on AI-driven projects, from conceptual design to debugging and optimization.
+            </p>
+            <div class="skills-developed mt-4">
+            <h4>Skills Developed:</h4>
+            <div class="badge-container">
+                <span class="badge bg-success">Artificial Intelligence (Agentic AI, Decision Models)</span>
+                <span class="badge bg-success">Machine Learning</span>
+                <span class="badge bg-success">Deep Learning</span>
+                <span class="badge bg-success">Model Evaluation</span>
+                <span class="badge bg-success">Data-Driven Problem Solving</span>
+                <span class="badge bg-success">Programming</span>
+                <span class="badge bg-success">Mentoring & Academic Support</span>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+      <!-- Internship 1 -->
       <div class="experience-card internship-card mb-5" style="animation-delay:0.5s">
         <div class="card-header">
-          <span class="position-title">Internship Position 1</span>
+          <span class="position-title">Data Science Intern</span>
         </div>
         <div class="card-body">
           <div class="company-info mb-3">
-            <span class="company-name">Company Name 1</span>
-            <span class="date">Start Date - End Date</span>
+            <span class="company-name">Maxgen Technologies</span>
+            <span class="date">10/2023 - 04/2024</span>
           </div>
           <p class="description">
-            Description of your responsibilities, projects, and achievements during this internship.
-          </p>
+            • Developed Python scripts for data analysis, automating workflows and reducing manual effort by 30%, ensuring timely and accurate project deliverables.<br>
+            • Applied NLP techniques and data science methods (topic modeling, sentiment analysis) to analyze unstructured text data, improving insight extraction efficiency by 40%.<br>
+            • Built and deployed a machine learning model using Streamlit, creating an interactive web app that enabled non-technical stakeholders to access real-time recommendations.
+        </p>
           <div class="skills-developed mt-4">
             <h4>Skills Developed:</h4>
             <div class="badge-container">
-              <span class="badge bg-warning text-dark">Skill 1</span>
-              <span class="badge bg-warning text-dark">Skill 2</span>
-              <span class="badge bg-warning text-dark">Skill 3</span>
+              <span class="badge bg-warning text-dark">Machine Learning</span>
+              <span class="badge bg-warning text-dark">Recommender System</span>
+              <span class="badge bg-warning text-dark">Natural Language Processing</span>
+              <span class="badge bg-warning text-dark">Collaborative Filtering</span>
+              <span class="badge bg-warning text-dark">Content Based Filtering</span>
+              <span class="badge bg-warning text-dark">Python</span>
+              <span class="badge bg-warning text-dark">Pandas</span>
+              <span class="badge bg-warning text-dark">Numpy</span>
+              <span class="badge bg-warning text-dark">Scikit-learn</span>
+              <span class="badge bg-warning text-dark">Data Preprocessing</span>
+              <span class="badge bg-warning text-dark">Feature Engineering</span>
+              <span class="badge bg-warning text-dark">EDA</span>
+              <span class="badge bg-warning text-dark">Model Evaluation</span>
+              <span class="badge bg-warning text-dark">Streamlit</span>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Internship 2 -->
       <div class="experience-card internship-card" style="animation-delay:0.7s">
         <div class="card-header">
-          <span class="position-title">Internship Position 2</span>
+          <span class="position-title">Data Science Intern</span>
         </div>
         <div class="card-body">
           <div class="company-info mb-3">
-            <span class="company-name">Company Name 2</span>
-            <span class="date">Start Date - End Date</span>
+            <span class="company-name">Fingertips: A Data Intelligence Solutions</span>
+            <span class="date">02/2023 - 04/2023</span>
           </div>
           <p class="description">
-            Description of your responsibilities, projects, and achievements during this internship.
+            • Worked on two machine learning projects: Red Wine Quality Prediction using SVM, achieving ~85% accuracy on a dataset of 4,800+ samples, and Cardiac Arrest Analysis using Clustering, uncovering 3–4 distinct patient risk groups from 1,500+ records.<br>
+            • Applied data cleaning, feature engineering, and evaluation metrics to improve model reliability by 15-20%.<br>
+            • Strengthened skills in classification, clustering, and data-driven analysis across diverse datasets.
           </p>
           <div class="skills-developed mt-4">
             <h4>Skills Developed:</h4>
             <div class="badge-container">
-              <span class="badge bg-warning text-dark">Skill 1</span>
-              <span class="badge bg-warning text-dark">Skill 2</span>
-              <span class="badge bg-warning text-dark">Skill 3</span>
+              <span class="badge bg-warning text-dark">Python</span>
+              <span class="badge bg-warning text-dark">Machine Learning</span>
+              <span class="badge bg-warning text-dark">Deep Learning</span>
+              <span class="badge bg-warning text-dark">Statistics and Probability</span>
+              <span class="badge bg-warning text-dark">SQL</span>
+              <span class="badge bg-warning text-dark">Tableau</span>
+              <span class="badge bg-warning text-dark">Microsoft PowerBI</span>
+              <span class="badge bg-warning text-dark">BigData(Hadoop and Apache Spark)</span>
             </div>
           </div>
         </div>
