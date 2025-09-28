@@ -12,7 +12,8 @@
       margin: 0; font-family: Arial, sans-serif; line-height: 1.6;
       background-color: #f9f9f9; color: #000;
     }
-    /* Navbar (reuse styling) */
+
+    /* Navbar */
     .navbar {
       position: sticky; top: 0; z-index: 1000; background-color: #000;
       padding: 12px 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
@@ -23,19 +24,13 @@
     }
     .navbar-brand { color: #fff; font-size: 1.3rem; font-weight: bold; text-decoration: none; }
     .nav-links { list-style: none; display: flex; gap: 24px; margin: 0; padding: 0; }
-    .nav-link {
-      color: #fff; text-decoration: none; font-size: 1rem; padding: 6px 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-link:hover { background-color: #000; border-radius: 4px; color: #ffdd57; }
-    @media (max-width: 768px) {
-      .nav-links { flex-wrap: wrap; gap: 12px; justify-content: center; }
-    }
+    .nav-link { color: #fff; text-decoration: none; font-size: 1rem; padding: 6px 8px; transition: color 0.3s ease; }
+    .nav-link:hover { color: #ffdd57; }
+    @media (max-width: 768px) { .nav-links { flex-wrap: wrap; gap: 12px; justify-content: center; } }
 
-    /* Coursework styling */
+    /* Coursework Section */
     .coursework-section {
-      max-width: 1100px; margin: 60px auto; padding: 0 20px;
-      text-align: center;
+      max-width: 1100px; margin: 60px auto; padding: 0 20px; text-align: center;
     }
     .coursework-section h1 {
       font-size: 2.5rem; margin-bottom: 40px; font-weight: bold; color: #222;
@@ -48,79 +43,46 @@
       background: #fff; padding: 20px; border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.6s ease;
-      opacity: 0; /* start hidden for fade-in */
+      opacity: 0;
     }
-    .course-card.show {
-      opacity: 1;
-    }
-    .course-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-    .course-card i {
-      font-size: 1.8rem; color: #007bff; margin-bottom: 10px;
-    }
-    .course-card h3 {
-      font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;
-    }
-    .course-card p {
-      font-size: 0.9rem; color: #444;
-    }
+    .course-card.show { opacity: 1; }
+    .course-card:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .course-card i { font-size: 1.8rem; color: #007bff; margin-bottom: 10px; }
+    .course-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .course-card p { font-size: 0.9rem; color: #444; }
 
-    /* Contact section reused */
-    .contact-section {
-      background-color: #000; color: #fff; padding: 60px 20px;
-      opacity: 0; /* start hidden for fade-in */
-      transition: opacity 1s ease;
-    }
-    .contact-section.show {
-      opacity: 1;
-    }
+    /* Transcript Section */
+    .transcript-section { max-width: 1100px; margin: 60px auto; padding: 0 20px; text-align: center; }
+    .transcript-section h1 { font-size: 2.5rem; margin-bottom: 40px; font-weight: bold; color: #222; }
+    .transcript-row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .transcript-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: transform 0.25s ease; opacity: 0; }
+    .transcript-card.show { opacity: 1; }
+    .transcript-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+    .transcript-card h4 { margin-bottom: 10px; }
+    .transcript-card a { text-decoration: none; color: #007bff; font-weight: 500; }
+
+    /* Contact Section */
+    .contact-section { background-color: #000; color: #fff; padding: 60px 20px; opacity: 0; transition: opacity 1s ease; }
+    .contact-section.show { opacity: 1; }
     .contact-section .container-fluid { max-width: 1100px; }
-    .contact-top {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 20px; flex-wrap: wrap;
-    }
+    .contact-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     .contact-top h2 { font-size: 3rem; margin: 0; font-weight: 700; }
-    .contact-info {
-      display: flex; gap: 28px; align-items: center;
-    }
-    .contact-info a {
-      display: inline-flex; align-items: center; gap: 10px;
-      color: #fff; text-decoration: none; font-weight: 500; font-size: 1.05rem;
-    }
+    .contact-info { display: flex; gap: 28px; align-items: center; }
+    .contact-info a { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 500; font-size: 1.05rem; }
     .contact-info .bi { font-size: 1.25rem; color: #fff; }
-    .social-icons {
-      display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; margin-top: 36px;
-    }
+    .social-icons { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; margin-top: 36px; }
     .icon-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
-    .icon-item img {
-      width: 72px; height: 72px; border-radius: 50%; background-color: #0d020a;
-      padding: 12px; object-fit: contain; display: block;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
+    .icon-item img { width: 72px; height: 72px; border-radius: 50%; background-color: #0d020a; padding: 12px; object-fit: contain; display: block; transition: transform .25s ease, box-shadow .25s ease; }
     .icon-item span { margin-top: 8px; font-size: 1rem; }
     .icon-item:hover img { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(227,95,185,0.22); }
-    @media (max-width: 767px) {
-      .contact-top { align-items: flex-start; }
-      .contact-top h2 { font-size: 2.2rem; }
-      .contact-info { gap: 18px; margin-top: 8px; }
-      .social-icons { justify-content: flex-start; margin-top: 20px; }
-    }
-    .fade-item {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
 
-    .fade-item.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+    /* Fade-in animation */
+    .fade-item { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .fade-item.show { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="container-fluid">
       <a href="index.html" class="navbar-brand">My Portfolio</a>
@@ -138,42 +100,30 @@
     </div>
   </nav>
 
+  <!-- Coursework Section -->
   <section class="coursework-section">
     <h1>Coursework</h1>
-    <div class="courses-grid">
-      <div class="course-card fade-item">
-        <i class="bi bi-cpu"></i>
-        <h3>Artificial Intelligence</h3>
-        <p>Explored search algorithms, planning, and intelligent agents.</p>
+    <div class="courses-grid" id="coursesGrid">
+      <!-- Courses will be added dynamically -->
+    </div>
+  </section>
+
+  <!-- Transcript Section -->
+  <section class="transcript-section">
+    <h1>Transcripts</h1>
+    <div class="transcript-row">
+      <div class="transcript-card fade-item">
+        <h4>Bachelor's Transcript</h4>
+        <p><a href="Files/Coursework/Bachelors_transcript.pdf" target="_blank">View</a></p>
       </div>
-      <div class="course-card fade-item">
-        <i class="bi bi-graph-up"></i>
-        <h3>Machine Learning</h3>
-        <p>Supervised/unsupervised learning, neural networks, and model evaluation.</p>
-      </div>
-      <div class="course-card fade-item">
-        <i class="bi bi-database"></i>
-        <h3>Database Systems</h3>
-        <p>Relational databases, SQL, indexing, and query optimization.</p>
-      </div>
-      <div class="course-card fade-item">
-        <i class="bi bi-code-slash"></i>
-        <h3>Data Structures & Algorithms</h3>
-        <p>Efficiency analysis, graph algorithms, and advanced data structures.</p>
-      </div>
-      <div class="course-card fade-item">
-        <i class="bi bi-cloud"></i>
-        <h3>Cloud Computing</h3>
-        <p>Virtualization, distributed storage, and cloud-native application design.</p>
-      </div>
-      <div class="course-card fade-item">
-        <i class="bi bi-bar-chart"></i>
-        <h3>Data Visualization</h3>
-        <p>Best practices for interactive dashboards and storytelling with data.</p>
+      <div class="transcript-card fade-item">
+        <h4>Master's Transcript</h4>
+        <p><a href="Files/Coursework/Master_Transcript.pdf" target="_blank">View</a></p>
       </div>
     </div>
   </section>
 
+  <!-- Contact Section -->
   <section id="contact" class="contact-section">
     <div class="container-fluid">
       <div class="contact-top">
@@ -194,21 +144,39 @@
     </div>
   </section>
 
+  <!-- JS for dynamic courses and fade-in -->
   <script>
+    const subjects = [
+      { icon:'bi-cpu', title:'Artificial Intelligence', desc:'Explored search algorithms, planning, and built intelligent agents.' },
+      { icon:'bi-graph-up', title:'Machine Learning in Python', desc:'Implemented supervised and unsupervised models using Python libraries.' },
+      { icon:'bi-database', title:'Data Mining', desc:'Learned techniques for pattern discovery, clustering, and association rules.' },
+      { icon:'bi-code-slash', title:'Data Structures & Algorithm Engineering', desc:'Studied efficient algorithms, complexity, and advanced data structures.' },
+      { icon:'bi-cloud', title:'AI in healthcare and Fintech', desc:'Explored AI applications for diagnostics, fraud detection, and personalization.' },
+      { icon:'bi-bar-chart', title:'Operating Systems', desc:'Gained knowledge of processes, scheduling, memory, and concurrency.' },
+      { icon:'bi-shield-lock', title:'Statistics and Probability', desc:'Applied probability, distributions, and inference for data-driven analysis.' },
+      { icon:'bi-hdd-network', title:'Data communication and Computer Networks', desc:'Learned networking protocols, layered models, and secure communication.' },
+      { icon:'bi-window-stack', title:'Database Management Systems', desc:'Designed schemas, normalized databases, and optimized SQL queries.' },
+      { icon:'bi-kanban', title:'Big Data Analytics', desc:'Studied distributed frameworks for processing and analyzing large datasets.' },
+      { icon:'bi-robot', title:'Cloud Computing', desc:'Explored virtualization, storage, and scalable cloud-native applications.' },
+      { icon:'bi-bar-chart-line', title:'Computer system security', desc:'Covered cryptography, access control, and intrusion detection mechanisms.' }
+    ];
+
+    const grid = document.getElementById('coursesGrid');
+    subjects.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'course-card fade-item';
+      card.innerHTML = `<i class="bi ${s.icon}"></i><h3>${s.title}</h3><p>${s.desc}</p>`;
+      grid.appendChild(card);
+    });
+
+    // Fade-in observer
     const fadeItems = document.querySelectorAll('.fade-item');
     const contactSection = document.querySelector('.contact-section');
-
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
     }, { threshold: 0.2 });
-
     fadeItems.forEach(item => observer.observe(item));
     observer.observe(contactSection);
   </script>
-
 </body>
 </html>

@@ -74,11 +74,15 @@
       font-size: 2rem; font-weight: 700; margin-bottom: 2rem; text-align: center; 
     }
     .skills-grid {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
     }
     .skill-card {
-      flex: 0 1 140px; background: #fff; border-radius: 10px; text-align: center;
-      padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      flex: 0 1 160px; 
+      background: #fff; 
+      border-radius: 10px; 
+      text-align: center;
+      padding: 12px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.6s ease;
       cursor: pointer;
       opacity: 0; /* start hidden for fade-in */
@@ -91,7 +95,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .skill-card img {
-      width: 40px; height: 40px; margin-bottom: 8px; object-fit: contain;
+      width: 42px; height: 42px; margin-bottom: 8px; object-fit: contain;
     }
     .skill-card h3 {
       font-size: 0.9rem; margin: 4px 0; color: #333; font-weight: 600;
@@ -221,12 +225,10 @@
         transform: translateY(20px);
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-
     .fade-item.show {
         opacity: 1;
         transform: translateY(0);
     }
-
   </style>
 </head>
 <body>
@@ -250,29 +252,24 @@
   <section id="skills" class="skills-section">
     <h2>Skills</h2>
     <div class="skills-grid">
-      <div class="skill-card fade-item">
-        <img src="images/skills/1.jpeg" alt="Python Icon">
-        <h3>Python</h3>
-        <p>Basics to advanced</p>
-      </div>
-      <div class="skill-card fade-item">
-        <img src="images/skills/2.webp" alt="Data Visualization Icon">
-        <h3>Tableau</h3>
-        <p>Charts & dashboards</p>
-      </div>
-      <div class="skill-card fade-item">
-        <img src="images/skills/3.webp" alt="SQL Icon">
-        <h3>SQL</h3>
-        <p>Queries & optimization</p>
-      </div>
-      <div class="skill-card fade-item">
-        <img src="images/skills/4.webp" alt="Data Storytelling Icon">
-        <h3>Power BI</h3>
-        <p>Presenting insights</p>
-      </div>
+      <div class="skill-card fade-item"><img src="images/skills/Programming.png" alt="Programming"><h3>Programming</h3><p>Python, R, Java, C</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Data Visualization.png" alt="Data Visualization"><h3>Data Visualization</h3><p>Tableau, Power BI</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Database Management.jpg" alt="Database Management"><h3>Database Management</h3><p>MySQL, MongoDB, Phpadmin, DBeaver </p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Machine Learning.jpg" alt="Machine Learning"><h3>Machine Learning</h3><p>Pandas, Numpy, Matplotlib, Seaborn, Scikit-learn</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Deep Learning.png" alt="Deep learning"><h3>Deep learning</h3><p>Tensorflow, Keras, Pytorch, Hugging face Transformers</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Artficial Intelligence.jpg"alt="Artificial Intelligence"><h3>Artificial Intelligence</h3><p>NLP, Reinforcement Learning, RAG</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Mathematics.jpg" alt="Mathematics"><h3>Mathematics</h3><p>Linear Algebra, Probability and Statistics</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Big Data.png" alt="Big Data"><h3>Big Data</h3><p>Hadoop, Apache Spark, Hive</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Microsoft Office Suite.webp" alt="Microsoft Office Suite"><h3>Microsoft Office Suite </h3><p>Word, Excel, Powerpoint</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Cloud.jpeg" alt="Cloud"><h3>Cloud</h3><p>Google, AWS, Azure</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Business Intelligence.jpg" alt="Business Intelligence"><h3>Business Intelligence</h3><p>KPI Deployment</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Deployment and MLOps.jpg" alt="Deployment and MLOps"><h3>Deployment and MLOps</h3><p>Flask, Django, Streamlit, Docker, Serving models, CI/CD</p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Data Structure and Algorithms.png" alt="Data Structure and Algorithms"><h3>Data Structure and Algorithms</h3><p></p></div>
+      <div class="skill-card fade-item"><img src="images/skills/Git and Github.png" alt="Git and Github"><h3>Git and Github</h3><p></p></div>
+      <div class="skill-card fade-item"><img src="images/skills/System Design.jpg" alt="System Design"><h3>System Design</h3><p></p></div>
     </div>
   </section>
-
+ 
   <section id="languages" class="languages-section">
       <div class="container">
           <h2 class="text-center mb-4">Languages</h2>
@@ -344,6 +341,5 @@
     fadeItems.forEach(item => observer.observe(item));
     observer.observe(contactSection);
   </script>
-
 </body>
 </html>

@@ -62,11 +62,10 @@
     }
     .cert-img:hover { transform:scale(1.03); }
 
-    /* Contact Section (reuse) */
+    /* Contact Section */
     .contact-section {
       background-color:#000; color:#fff; padding:60px 20px;
-      opacity:0; /* start hidden for fade-in */
-      transition:opacity 1s ease;
+      opacity:0; transition:opacity 1s ease;
     }
     .contact-section.show { opacity:1; }
     .contact-section .container-fluid { max-width:1100px; }
@@ -104,19 +103,18 @@
       .social-icons{justify-content:flex-start;margin-top:20px;}
     }
     .fade-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-
     .fade-item.show {
-    opacity: 1;
-    transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-
   </style>
 </head>
 <body>
+
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container-fluid">
@@ -138,28 +136,8 @@
   <!-- Certifications Section -->
   <section class="cert-section">
     <h1>Certifications</h1>
-    <div class="cert-grid">
-      <!-- Certificate with link -->
-      <div class="cert-card fade-item">
-        <h3>Digital Marketing Specialization</h3>
-        <a href="https://www.coursera.org/account/accomplishments/certificate/example" target="_blank" class="cert-link">
-          <i class="bi bi-box-arrow-up-right"></i> View Certificate
-        </a>
-      </div>
-
-      <!-- Certificate with image -->
-      <div class="cert-card fade-item">
-        <h3>AI & Machine Learning Fundamentals</h3>
-        <img src="images/certificates/aiml.png" alt="AI & ML Certificate" class="cert-img">
-      </div>
-
-      <!-- Add more certificates by duplicating blocks -->
-      <div class="cert-card fade-item">
-        <h3>Power BI Data Analyst</h3>
-        <a href="https://www.credly.com/badges/example" target="_blank" class="cert-link">
-          <i class="bi bi-box-arrow-up-right"></i> View Certificate
-        </a>
-      </div>
+    <div class="cert-grid" id="certGrid">
+      <!-- JS will populate certifications -->
     </div>
   </section>
 
@@ -185,6 +163,53 @@
   </section>
 
   <script>
+    const certifications = [
+      { title:'IBM AI Engineering Professional Certificate - Coursera', link:'https://www.coursera.org/account/accomplishments/professional-cert/Q6965NDZTXDB' },
+      { title:'IBM AI Developer Professional Certificate - Coursera', link:'https://www.coursera.org/account/accomplishments/professional-cert/2YWAFQXXFYRA' },
+      { title:'Introduction to Cloud - Cognitive Class', link:'https://courses.cognitiveclass.ai/certificates/68e15c6ba38746138bc8a5272c8215f5' },
+      { title:'Programming for Everybody (Getting Started with Python)- Michigan University', link:'https://www.coursera.org/account/accomplishments/verify/K664F9T74B4J' },
+      { title:'Python Data Structures - Michigan University', link:'https://www.coursera.org/account/accomplishments/verify/HEJAYVAZMTC2' },
+      { title:'Using Python to Access Web Data - Michigan University', link:'https://www.coursera.org/account/accomplishments/verify/CUMYEDHVM3Q8' },
+      { title:'Capstone: Retrieving, Processing, and Visualizing Data with Python - Michigan University', link:'https://www.coursera.org/account/accomplishments/verify/4A4X824DBJEV' },
+      { title:'Build a Face Recognition Application using Python - HCL Guvi', link:'https://www.guvi.in/certificate?id=0w129a6q4r9W63e871' },
+      { title:'Digital Marketing Analytics in Practice with HONORS - University of Illinois', link:'https://www.coursera.org/account/accomplishments/verify/SZRVAJ5HQ7ZK' },
+      { title:'Digital Marketing Analytics in Theory with HONORS - University of Illinois', link:'https://www.coursera.org/account/accomplishments/verify/WZEAFC622TZ7' },
+      { title:'Digital Marketing Strategy: Navigating Emerging Media and AI - University of Illinois', link:'https://www.coursera.org/account/accomplishments/verify/FVTVS5LWRPKV' },
+      { title:'Digital Marketing Implementation: Executing Strategies in a Connected, Data-Driven World - University of Illinois', link:'https://www.coursera.org/account/accomplishments/verify/8A9LKVMCE7CP' },
+      { title:'Guinness World Record Event - HCL Guvi', link:'https://www.guvi.in/certificate?id=a6109pQ5D5Rc91899Y' },
+      { title:'Marketing in a Digital World with HONORS - University of Illinois ', link:'https://www.coursera.org/account/accomplishments/verify/6NS8ZK3FVAJD' },
+      { title:'The Digital Marketing Revolution - University of Illinois', link:'https://www.coursera.org/account/accomplishments/verify/QAQNFDSW7YFL' },
+      { title:'TCS iON Career Edge - Young Professional - TCS iON'},
+      { title:'The Fundamentals of Digital Marketing - Google Digital Garage' },
+      { title:'IBM Coding Bootcamp - Chandigarh University' },
+      { title:'Fundamentals Of Artificial Intelligence and Machine Learning - Vodafone' },
+      { title:'AI FOR ALL - GUINNESS WORLD RECORD' },
+      { title:'Complete Data Science,Machine Learning,DL,NLP - UDEMY'}
+    ];
+
+    const grid = document.getElementById('certGrid');
+    certifications.forEach(cert => {
+      const card = document.createElement('div');
+      card.className = 'cert-card fade-item';
+      
+      if(cert.link){
+        card.innerHTML = `
+          <h3>${cert.title}</h3>
+          <a href="${cert.link}" target="_blank" class="cert-link">
+            <i class="bi bi-box-arrow-up-right"></i> View Certificate
+          </a>`;
+      } else if(cert.img){
+        card.innerHTML = `
+          <h3>${cert.title}</h3>
+          <img src="${cert.img}" alt="${cert.title}" class="cert-img">`;
+      } else {
+        card.innerHTML = `<h3>${cert.title}</h3>`;
+      }
+
+      grid.appendChild(card);
+    });
+
+    // Intersection Observer for fade-in
     const fadeItems = document.querySelectorAll('.fade-item');
     const contactSection = document.querySelector('.contact-section');
 
@@ -199,38 +224,6 @@
     fadeItems.forEach(item => observer.observe(item));
     observer.observe(contactSection);
   </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const fadeItems = document.querySelectorAll('.fade-item');
-
-    // Intersection Observer
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-        if(entry.isIntersecting) {
-            entry.target.classList.add('show');
-            observer.unobserve(entry.target); // Fade only once
-        }
-        });
-    }, {
-        threshold: 0.1
-    });
-
-    fadeItems.forEach(item => {
-        observer.observe(item);
-
-        // Force show if already in viewport on load
-        const rect = item.getBoundingClientRect();
-        if(rect.top < window.innerHeight) {
-        item.classList.add('show');
-        observer.unobserve(item);
-        }
-    });
-
-    // Optional: update observer on window resize or load for layout shifts
-    window.addEventListener('load', () => fadeItems.forEach(item => observer.observe(item)));
-    window.addEventListener('resize', () => fadeItems.forEach(item => observer.observe(item)));
-    });
-    </script>
 
 </body>
 </html>
