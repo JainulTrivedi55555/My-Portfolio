@@ -1,458 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects - Jainul's Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f9f9f9;
-      color: #000000;
-    }
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: #000000;
-      padding: 12px 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    .navbar .container-fluid {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .navbar-brand {
-      color: #fff;
-      font-size: 1.3rem;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 24px;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-link {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 6px 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-link:hover {
-      background-color: #000000;
-      border-radius: 4px;
-      color: #ffdd57;
-    }
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-      }
-    }
-    .projects-section {
-      background-color: #f8f9fa;
-      padding: 4rem 2rem;
-    }
-    .projects-section h2 {
-      font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; text-align: center;
-    }
-    .projects-section .card {
-      border: none; border-radius: 1.25rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.6s ease;
-      background-color: #fff; display: flex; flex-direction: column; overflow: hidden;
-      opacity: 0; /* start hidden for fade-in */
-    }
-    .projects-section .card.show {
-      opacity: 1; /* fade-in visible */
-    }
-    .projects-section .card:hover {
-      transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-    .projects-section .card-img-top {
-      border-top-left-radius: 1.25rem; border-top-right-radius: 1.25rem;
-      object-fit: cover; height: 220px; width: 100%;
-    }
-    .projects-section .card-title {
-      font-weight: 700; font-size: 1.25rem; margin-bottom: 0.75rem; text-align: center;
-    }
-    .projects-section .card-text {
-      font-size: 0.95rem; text-align: center; color: #555;
-      /* Ensures text takes space for uniform card height */
-      min-height: 40px; 
-    }
-    .projects-section .btn {
-      font-weight: 600; border-radius: 999px; padding: 0.4rem 1rem;
-      font-size: 0.85rem; display: inline-block; text-decoration: none; margin: 0.25rem;
-    }
-    .projects-section .btn-outline-secondary {
-      border: 1px solid #6c757d; color: #6c757d; background: none;
-    }
-    .projects-section .btn-outline-secondary:hover {
-      background-color: #6c757d; color: #fff;
-    }
-    .projects-row {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
-    }
-    .project-col {
-      /* Adjusted to work well with 3-4 columns, scaling nicely */
-      flex: 1 1 min(300px, 100%); 
-      max-width: 350px;
-    }
-    @media (min-width: 1200px) {
-        .project-col {
-          flex: 1 1 calc(25% - 2rem); 
-          max-width: calc(25% - 2rem);
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Projects - Jainul's Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
         }
-    }
-    @media (max-width: 900px) {
-      .project-col { flex: 1 1 calc(50% - 2rem); max-width: calc(50% - 2rem); }
-    }
-    @media (max-width: 600px) {
-      .project-col { flex: 1 1 100%; max-width: 100%; }
-    }
-    .card-footer {
-        padding-top: 1rem;
-    }
-    .contact-section {
-      background-color: #000;
-      color: #fff;
-      padding: 60px 20px;
-      opacity: 0; /* fade-in */
-      transition: opacity 1s ease;
-    }
-    .contact-section.show {
-      opacity: 1;
-    }
-    .contact-section .container-fluid {
-      max-width: 1100px;
-    }
-    .contact-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .contact-top h2 {
-      font-size: 3rem;
-      margin: 0;
-      font-weight: 700;
-    }
-    .contact-info {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-    .contact-info a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1.05rem;
-    }
-    .contact-info .bi {
-      font-size: 1.25rem;
-      color: #fff;
-    }
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 36px;
-      flex-wrap: wrap;
-      margin-top: 36px;
-    }
-    .icon-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: #fff;
-    }
-    .icon-item img {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background-color: #0d020a;
-      padding: 12px;
-      object-fit: contain;
-      display: block;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .icon-item:hover img {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(227,95,185,0.22);
-    }
-    .icon-item span {
-      margin-top: 8px;
-      font-size: 1rem;
-    }
-    @media (max-width: 767px) {
-      .contact-top {
-        align-items: flex-start;
-      }
-      .contact-top h2 { font-size: 2.2rem; }
-      .contact-info { gap: 18px; margin-top: 8px; }
-      .social-icons { justify-content: flex-start; margin-top: 20px; }
-    }
-    .fade-item {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    /* Reusing .show for project cards and contact section */
-    .fade-card.show, .contact-section.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-  </style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #000000;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #000000;
+            padding: 12px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .navbar .container-fluid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 6px 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: #000000;
+            border-radius: 4px;
+            color: #ffdd57;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: center;
+            }
+        }
+        .projects-section {
+            background-color: #f8f9fa;
+            padding: 4rem 2rem;
+        }
+        .projects-section h2 {
+            font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; text-align: center;
+        }
+        .projects-section .card {
+            border: none; border-radius: 1.25rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.6s ease;
+            background-color: #fff; display: flex; flex-direction: column; overflow: hidden;
+            opacity: 0; /* start hidden for fade-in */
+        }
+        .projects-section .card.show {
+            opacity: 1; /* fade-in visible */
+        }
+        .projects-section .card:hover {
+            transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        .projects-section .card-img-top {
+            border-top-left-radius: 1.25rem; border-top-right-radius: 1.25rem;
+            object-fit: cover; height: 220px; width: 100%;
+        }
+        .projects-section .card-title {
+            font-weight: 700; font-size: 1.25rem; margin-bottom: 0.75rem; text-align: center;
+        }
+        .projects-section .card-text {
+            font-size: 0.95rem; text-align: center; color: #555;
+            /* Ensures text takes space for uniform card height */
+            min-height: 40px; 
+        }
+        .projects-section .btn {
+            font-weight: 600; border-radius: 999px; padding: 0.4rem 1rem;
+            font-size: 0.85rem; display: inline-block; text-decoration: none; margin: 0.25rem;
+        }
+        .projects-section .btn-outline-secondary {
+            border: 1px solid #6c757d; color: #6c757d; background: none;
+        }
+        .projects-section .btn-outline-secondary:hover {
+            background-color: #6c757d; color: #fff;
+        }
+        /* Styling for the new Live Demo button */
+        .projects-section .btn-primary {
+            background-color: #007bff; color: #fff; border: 1px solid #007bff;
+        }
+        .projects-section .btn-primary:hover {
+            background-color: #0056b3; border-color: #0056b3;
+        }
+        .projects-row {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+        }
+        .project-col {
+            /* Adjusted to work well with 3-4 columns, scaling nicely */
+            flex: 1 1 min(300px, 100%); 
+            max-width: 350px;
+        }
+        @media (min-width: 1200px) {
+            .project-col {
+                flex: 1 1 calc(25% - 2rem); 
+                max-width: calc(25% - 2rem);
+            }
+        }
+        @media (max-width: 900px) {
+            .project-col { flex: 1 1 calc(50% - 2rem); max-width: calc(50% - 2rem); }
+        }
+        @media (max-width: 600px) {
+            .project-col { flex: 1 1 100%; max-width: 100%; }
+        }
+        .card-footer {
+            padding-top: 1rem;
+        }
+        .contact-section {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 20px;
+            opacity: 0; /* fade-in */
+            transition: opacity 1s ease;
+        }
+        .contact-section.show {
+            opacity: 1;
+        }
+        .contact-section .container-fluid {
+            max-width: 1100px;
+        }
+        .contact-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .contact-top h2 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        .contact-info {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .contact-info a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        .contact-info .bi {
+            font-size: 1.25rem;
+            color: #fff;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+            flex-wrap: wrap;
+            margin-top: 36px;
+        }
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+        .icon-item img {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background-color: #0d020a;
+            padding: 12px;
+            object-fit: contain;
+            display: block;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .icon-item:hover img {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(227,95,185,0.22);
+        }
+        .icon-item span {
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+        @media (max-width: 767px) {
+            .contact-top {
+                align-items: flex-start;
+            }
+            .contact-top h2 { font-size: 2.2rem; }
+            .contact-info { gap: 18px; margin-top: 8px; }
+            .social-icons { justify-content: flex-start; margin-top: 20px; }
+        }
+        .fade-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        /* Reusing .show for project cards and contact section */
+        .fade-card.show, .contact-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container-fluid">
-        <a href="index.html" class="navbar-brand">My Portfolio</a>
-        <ul class="nav-links">
-            <li><a class="nav-link" href="index.html">Home</a></li>
-            <li><a class="nav-link" href="about.html">About</a></li>
-            <li><a class="nav-link" href="projects.html">Projects</a></li>
-            <li><a class="nav-link" href="skills.html">Skills</a></li>
-            <li><a class="nav-link" href="research.html">Research</a></li>
-            <li><a class="nav-link" href="experience.html">Work Experience</a></li>
-            <li><a class="nav-link" href="coursework.html">Coursework</a></li>
-            <li><a class="nav-link" href="certifications.html">Certifications</a></li>
-            <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
+            <a href="index.html" class="navbar-brand">My Portfolio</a>
+            <ul class="nav-links">
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li><a class="nav-link" href="about.html">About</a></li>
+                <li><a class="nav-link" href="projects.html">Projects</a></li>
+                <li><a class="nav-link" href="skills.html">Skills</a></li>
+                <li><a class="nav-link" href="research.html">Research</a></li>
+                <li><a class="nav-link" href="experience.html">Work Experience</a></li>
+                <li><a class="nav-link" href="coursework.html">Coursework</a></li>
+                <li><a class="nav-link" href="certifications.html">Certifications</a></li>
+                <li><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-  <section id="projects" class="projects-section">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="projects-row">
-        
-        <div class="project-col">
-          <div class="card fade-card">
-            <img src="images/projects/1.png" class="card-img-top" alt="Project 1 Image">
-            <div class="card-body">
-              <h5 class="card-title">Phishing Website Detection using Machine Learning(End to end Pipeline)</h5>
-              <p class="card-text">Developed an end-to-end ML pipeline for phishing website detection with automated preprocessing, drift monitoring, and optimized classification models.</p>
-              <div class="d-flex justify-content-center mt-3 card-footer">
-                <a href="https://github.com/JainulTrivedi55555/Phishing-Website-Detection-using-Machine-Learning-End-to-end-Pipeline-" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-              </div>
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-row">
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/12.jpg" class="card-img-top" alt="Customer Churn Prediction using Artificial Neural Networks">
+                        <div class="card-body">
+                            <h5 class="card-title">Customer Churn Prediction using Artificial Neural Networks</h5>
+                            <p class="card-text">Built an ANN model to predict customer churn with optimized accuracy.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Customer-Churn-Prediction-using-Artificial-Neural-Networks" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i>Source Code</a>
+                                <a href="https://customer-churn-prediction-using-artificial-neural-networks-ce9.streamlit.app/" class="btn btn-primary btn-sm"><i class="bi bi-link-45deg me-1"></i> Webapp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/13.webp" class="card-img-top" alt="Movie Review Sentiment Classification with Recurrent Neural Network">
+                        <div class="card-body">
+                            <h5 class="card-title">Movie Review Sentiment Classification with Recurrent Neural Network</h5>
+                            <p class="card-text">Implemented an end-to-end RNN pipeline that processes movie reviews and accurately determines sentiment, showcasing deep learning in natural language processing.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Movie-Review-Sentiment-Classification-with-Recurrent-Neural-Network" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                                <a href="https://afrtdemy5ocj7fyiddcgqq.streamlit.app/" class="btn btn-primary btn-sm"><i class="bi bi-link-45deg me-1"></i>Webapp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/14.png" class="card-img-top" alt="LSTM Based Generative Text Model Next Word Prediction with Early Stopping">
+                        <div class="card-body">
+                            <h5 class="card-title">LSTM Based Generative Text Model Next Word Prediction with Early Stopping</h5>
+                            <p class="card-text">Implemented an LSTM-based generative model for next-word prediction, leveraging early stopping to improve training efficiency.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/LSTM-Based-Generative-Text-Model-Next-Word-Prediction-with-Early-Stopping" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                                <a href="https://gg7xvumzfnuxdkvyjzgjk9.streamlit.app/" class="btn btn-primary btn-sm"><i class="bi bi-link-45deg me-1"></i>Webapp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/1.png" class="card-img-top" alt="Project 1 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Phishing Website Detection using Machine Learning(End to end Pipeline)</h5>
+                            <p class="card-text">Developed an end-to-end ML pipeline for phishing website detection with automated preprocessing, drift monitoring, and optimized classification models.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Phishing-Website-Detection-using-Machine-Learning-End-to-end-Pipeline-" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/2.png" class="card-img-top" alt="Project 2 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Movie Recommendation System</h5>
+                            <p class="card-text">Developed a movie recommendation system, improving model accuracy by 20% through API integration and collaborated on algorithm refinement, achieving higher prediction precision.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Movie-Recommendation-System" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">A Full-Spectrum Data Mining Framework for COVID-19 Response in Texas: From Disparity Analysis to Predictive Risk Modeling</h5>
+                            <p class="card-text">Leveraged disparity analysis and predictive modeling to enable data-driven COVID-19 risk insights in Texas.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/COVID-19-Response-in-Texas-From-Disparity-Analysis-to-Predictive-Risk-Modeling" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/4.png" class="card-img-top" alt="Project 4 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Healthcare Multiagent System</h5>
+                            <p class="card-text">Designed a multi-agent AI architecture to simulate intelligent coordination in healthcare systems.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Heathcare-MultiAgent-System" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/5.png" class="card-img-top" alt="Project 5 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Forest Fire Predictive Modeling using Machine Learning</h5>
+                            <p class="card-text">Developed a machine learning model to predict forest fire risk levels and guide proactive intervention.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Forest-Fire-Predictive-Modeling-using-Machine-Learning" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/6.avif" class="card-img-top" alt="Project 6 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Intelligent Vacuum Cleaner Simulation using AI</h5>
+                            <p class="card-text">Implemented an AI-powered simulation of an intelligent vacuum cleaner for adaptive path planning and obstacle avoidance.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Intelligent-Vacuum-Cleaner-Simulation-using-AI" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/7.jpeg" class="card-img-top" alt="Project 7 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">AI Agent Implementation for Optimal Maze Navigation</h5>
+                            <p class="card-text">Built an AI agent to optimally navigate complex mazes using reinforcement learning strategies.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/AI-Agent-Implementation-for-Optimal-Maze-Navigation" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/8.png" class="card-img-top" alt="Project 8 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">N-Queens Problem Solver using Local Search</h5>
+                            <p class="card-text">Solved the N-Queens problem via local search algorithms to efficiently find valid configurations.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/N-Queens-Problem-Solver-using-Local-Search" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/9.jpeg" class="card-img-top" alt="Project 9 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Algorithmic Design of the Connect 4 Game using Python</h5>
+                            <p class="card-text">Developed a high-performance Connect 4 game in Python, leveraging algorithmic design and AI for competitive play.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Algorithmic-Design-of-the-Connect-4-Game-using-Python" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/10.png" class="card-img-top" alt="Project 10 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">End-to-End Scalable ML Project Architecture and Cloud Deployment</h5>
+                            <p class="card-text">Built a full-stack ML project with model serving, API endpoints, and end-to-end deployment orchestration.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/MLproject" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <img src="images/projects/11.webp" class="card-img-top" alt="Project 11 Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Taj Restaurant Reservation System using Client-Server and Microservice Architecture</h5>
+                            <p class="card-text">Developed a restaurant reservation system using both Client-Server and Microservice architectures, comparing their design and performance trade-offs.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/Taj-Restaurant-Reservation-System" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-          </div>
         </div>
-        
-        <div class="project-col">
-          <div class="card fade-card">
-            <img src="images/projects/2.png" class="card-img-top" alt="Project 2 Image">
-            <div class="card-body">
-              <h5 class="card-title">Movie Recommendation System</h5>
-              <p class="card-text">Developed a movie recommendation system, improving model accuracy by 20% through API integration and collaborated on algorithm refinement, achieving higher prediction precision.</p>
-              <div class="d-flex justify-content-center mt-3 card-footer">
-                <a href="https://github.com/JainulTrivedi55555/Movie-Recommendation-System" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-              </div>
+    </section>
+
+    <section id="contact" class="contact-section fade-item">
+        <div class="container-fluid">
+            <div class="contact-top">
+                <h2>Contact Me</h2>
+                <div class="contact-info">
+                    <a href="mailto:jtrivedi@smu.edu">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>jtrivedi@smu.edu</span>
+                    </a>
+                    <a href="mailto:jainultrivedi0604@gmail.com">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>jainultrivedi0604@gmail.com</span>
+                    </a>
+                    <a href="tel:4699474140">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>469-947-4140</span>
+                    </a>
+                </div>
             </div>
-          </div>
+            <div class="social-icons">
+                <a class="icon-item" href="https://www.linkedin.com/in/jainultrivedi" target="_blank" aria-label="LinkedIn">
+                    <img src="images/contact/1.png" alt="LinkedIn">
+                    <span>LinkedIn</span>
+                </a>
+                <a class="icon-item" href="https://github.com/JainulTrivedi55555" target="_blank" aria-label="GitHub">
+                    <img src="images/contact/3.png" alt="GitHub">
+                    <span>GitHub</span>
+                </a>
+                <a class="icon-item" href="https://medium.com/@jainultrivedi55555" target="_blank" aria-label="Medium">
+                    <img src="images/contact/4.png" alt="Medium">
+                    <span>Medium</span>
+                </a>
+                <a class="icon-item" href="https://www.kaggle.com/jainultrivedi1" target="_blank" aria-label="Kaggle">
+                    <img src="images/contact/2.png" alt="Kaggle">
+                    <span>Kaggle</span>
+                </a>
+                <a class="icon-item" href="https://leetcode.com/u/91ikk5rxSj/" target="_blank" aria-label="Leetcode">
+                    <img src="images/contact/5.png" alt="Leetcode">
+                    <span>Leetcode</span>
+                </a>
+            </div>
         </div>
-        
-        <div class="project-col">
-          <div class="card fade-card">
-            <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3 Image">
-            <div class="card-body">
-              <h5 class="card-title">A Full-Spectrum Data Mining Framework for COVID-19 Response in Texas: From Disparity Analysis to Predictive Risk Modeling</h5>
-              <p class="card-text">Leveraged disparity analysis and predictive modeling to enable data-driven COVID-19 risk insights in Texas.</p>
-              <div class="d-flex justify-content-center mt-3 card-footer">
-                <a href="https://github.com/JainulTrivedi55555/COVID-19-Response-in-Texas-From-Disparity-Analysis-to-Predictive-Risk-Modeling" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/4.png" class="card-img-top" alt="Project 4 Image">
-              <div class="card-body">
-                <h5 class="card-title">Healthcare Multiagent System</h5>
-                <p class="card-text">Designed a multi-agent AI architecture to simulate intelligent coordination in healthcare systems.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/Heathcare-MultiAgent-System" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/5.png" class="card-img-top" alt="Project 5 Image">
-              <div class="card-body">
-                <h5 class="card-title">Forest Fire Predictive Modeling using Machine Learning</h5>
-                <p class="card-text">Developed a machine learning model to predict forest fire risk levels and guide proactive intervention.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/Forest-Fire-Predictive-Modeling-using-Machine-Learning" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
+    </section>
 
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/6.avif" class="card-img-top" alt="Project 6 Image">
-              <div class="card-body">
-                <h5 class="card-title">Intelligent Vacuum Cleaner Simulation using AI</h5>
-                <p class="card-text">Implemented an AI-powered simulation of an intelligent vacuum cleaner for adaptive path planning and obstacle avoidance.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/Intelligent-Vacuum-Cleaner-Simulation-using-AI" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
+    <script>
+        // Fade-in on scroll for project cards and contact section
+        const fadeItems = document.querySelectorAll('.fade-card, .contact-section');
 
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/7.jpeg" class="card-img-top" alt="Project 7 Image">
-              <div class="card-body">
-                <h5 class="card-title">AI Agent Implementation for Optimal Maze Navigation</h5>
-                <p class="card-text">Built an AI agent to optimally navigate complex mazes using reinforcement learning strategies.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/AI-Agent-Implementation-for-Optimal-Maze-Navigation" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // Stop observing after it has faded in
+                }
+            });
+        }, { threshold: 0.2 });
 
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/8.png" class="card-img-top" alt="Project 8 Image">
-              <div class="card-body">
-                <h5 class="card-title">N-Queens Problem Solver using Local Search</h5>
-                <p class="card-text">Solved the N-Queens problem via local search algorithms to efficiently find valid configurations.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/N-Queens-Problem-Solver-using-Local-Search" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/9.jpeg" class="card-img-top" alt="Project 9 Image">
-              <div class="card-body">
-                <h5 class="card-title">Algorithmic Design of the Connect 4 Game using Python</h5>
-                <p class="card-text">Developed a high-performance Connect 4 game in Python, leveraging algorithmic design and AI for competitive play.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/Algorithmic-Design-of-the-Connect-4-Game-using-Python" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/10.png" class="card-img-top" alt="Project 10 Image">
-              <div class="card-body">
-                <h5 class="card-title">End-to-End Scalable ML Project Architecture and Cloud Deployment</h5>
-                <p class="card-text">Built a full-stack ML project with model serving, API endpoints, and end-to-end deployment orchestration.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/MLproject" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-        <div class="project-col">
-            <div class="card fade-card">
-              <img src="images/projects/11.webp" class="card-img-top" alt="Project 11 Image">
-              <div class="card-body">
-                <h5 class="card-title">Taj Restaurant Reservation System using Client-Server and Microservice Architecture</h5>
-                <p class="card-text">Developed a restaurant reservation system using both Client-Server and Microservice architectures, comparing their design and performance trade-offs.</p>
-                <div class="d-flex justify-content-center mt-3 card-footer">
-                  <a href="https://github.com/JainulTrivedi55555/Taj-Restaurant-Reservation-System" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-      </div>
-      
-    </div>
-  </section>
-
-  <section id="contact" class="contact-section fade-item">
-    <div class="container-fluid">
-      <div class="contact-top">
-        <h2>Contact Me</h2>
-        <div class="contact-info">
-          <a href="mailto:jtrivedi@smu.edu">
-            <i class="bi bi-envelope-fill"></i>
-            <span>jtrivedi@smu.edu</span>
-          </a>
-          <a href="mailto:jainultrivedi0604@gmail.com">
-            <i class="bi bi-envelope-fill"></i>
-            <span>jainultrivedi0604@gmail.com</span>
-          </a>
-          <a href="tel:4699474140">
-            <i class="bi bi-telephone-fill"></i>
-            <span>469-947-4140</span>
-          </a>
-        </div>
-      </div>
-      <div class="social-icons">
-        <a class="icon-item" href="https://www.linkedin.com/in/jainultrivedi" target="_blank" aria-label="LinkedIn">
-          <img src="images/contact/1.png" alt="LinkedIn">
-          <span>LinkedIn</span>
-        </a>
-        <a class="icon-item" href="https://github.com/JainulTrivedi55555" target="_blank" aria-label="GitHub">
-          <img src="images/contact/3.png" alt="GitHub">
-          <span>GitHub</span>
-        </a>
-        <a class="icon-item" href="https://medium.com/@jainultrivedi55555" target="_blank" aria-label="Medium">
-          <img src="images/contact/4.png" alt="Medium">
-          <span>Medium</span>
-        </a>
-        <a class="icon-item" href="https://www.kaggle.com/jainultrivedi1" target="_blank" aria-label="Kaggle">
-          <img src="images/contact/2.png" alt="Kaggle">
-          <span>Kaggle</span>
-        </a>
-        <a class="icon-item" href="https://leetcode.com/u/91ikk5rxSj/" target="_blank" aria-label="Leetcode">
-          <img src="images/contact/5.png" alt="Leetcode">
-          <span>Leetcode</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // Fade-in on scroll for project cards and contact section
-    const fadeItems = document.querySelectorAll('.fade-card, .contact-section');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target); // Stop observing after it has faded in
-        }
-      });
-    }, { threshold: 0.2 });
-
-    fadeItems.forEach(item => observer.observe(item));
-  </script>
+        fadeItems.forEach(item => observer.observe(item));
+    </script>
 
 </body>
 </html>
