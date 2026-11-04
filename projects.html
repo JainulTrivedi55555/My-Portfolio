@@ -86,14 +86,57 @@
         .projects-section .card-img-top {
             border-top-left-radius: 1.25rem; border-top-right-radius: 1.25rem;
             object-fit: cover; height: 220px; width: 100%;
+            flex-shrink: 0; display: block;
+        }
+        /* Placeholder for projects without a screenshot, same size as the images */
+        .projects-section .card-img-placeholder {
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+            background: linear-gradient(135deg, #000000 0%, #1f2937 100%); color: #fff;
+        }
+        .projects-section .card-img-placeholder .bi {
+            font-size: 3rem; color: #ffdd57;
+        }
+        .projects-section .card-img-placeholder span {
+            font-size: 1.5rem; font-weight: 700; letter-spacing: 0.5px;
+        }
+        /* Uniform card layout: fixed title and description areas, buttons pinned to the bottom */
+        .projects-section .card {
+            height: 100%;
+        }
+        .projects-section .card-body {
+            display: flex; flex-direction: column; flex: 1 1 auto; padding: 1.25rem;
         }
         .projects-section .card-title {
-            font-weight: 700; font-size: 1.25rem; margin-bottom: 0.75rem; text-align: center;
+            font-weight: 700; font-size: 1.15rem; margin-bottom: 0.75rem; text-align: center;
+            line-height: 1.3;
+            height: calc(1.15rem * 1.3 * 4); /* 4 lines, fixed even if a long title is shrunk */
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         .projects-section .card-text {
             font-size: 0.95rem; text-align: center; color: #555;
-            /* Ensures text takes space for uniform card height */
-            min-height: 40px; 
+            line-height: 1.6; margin-bottom: 0;
+            height: calc(1.6em * 6);
+            display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; line-clamp: 6; overflow: hidden;
+        }
+        .projects-section .card-text.expanded {
+            height: auto; -webkit-line-clamp: unset; line-clamp: unset; display: block;
+        }
+        .projects-section .read-more {
+            height: 1.6rem; margin-top: 0.25rem; text-align: center;
+        }
+        .projects-section .read-more button {
+            background: none; border: none; padding: 0; color: #007bff;
+            font-size: 0.85rem; font-weight: 600; cursor: pointer;
+        }
+        .projects-section .read-more button:hover {
+            color: #0056b3; text-decoration: underline;
+        }
+        .projects-section .card-footer {
+            margin-top: auto !important; padding: 1rem 0 0; background: none; border-top: none;
+            min-height: 3.25rem; flex-wrap: nowrap; align-items: center;
+        }
+        .projects-section .card-footer .btn {
+            white-space: nowrap;
         }
         .projects-section .btn {
             font-weight: 600; border-radius: 999px; padding: 0.4rem 1rem;
@@ -112,28 +155,19 @@
         .projects-section .btn-primary:hover {
             background-color: #0056b3; border-color: #0056b3;
         }
+        /* Grid: 3 columns on desktop, 2 on tablet, 1 on mobile */
         .projects-row {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+            display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem;
         }
         .project-col {
-            /* Adjusted to work well with 3-4 columns, scaling nicely */
-            flex: 1 1 min(300px, 100%); 
-            max-width: 350px;
+            min-width: 0;
         }
-        @media (min-width: 1200px) {
-            .project-col {
-                flex: 1 1 calc(25% - 2rem); 
-                max-width: calc(25% - 2rem);
-            }
+        @media (max-width: 1199.98px) {
+            .projects-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
-        @media (max-width: 900px) {
-            .project-col { flex: 1 1 calc(50% - 2rem); max-width: calc(50% - 2rem); }
-        }
-        @media (max-width: 600px) {
-            .project-col { flex: 1 1 100%; max-width: 100%; }
-        }
-        .card-footer {
-            padding-top: 1rem;
+        @media (max-width: 767.98px) {
+            .projects-section { padding: 3rem 1rem; }
+            .projects-row { grid-template-columns: 1fr; gap: 1.5rem; }
         }
         .contact-section {
             background-color: #000;
@@ -229,12 +263,16 @@
             transform: translateY(0);
         }
     </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/theme.css">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar site-nav" aria-label="Main navigation">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">My Portfolio</a>
-            <ul class="nav-links">
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle navigation menu"><i class="bi bi-list" aria-hidden="true"></i><span>Menu</span></button>
+            <ul class="nav-links" id="site-menu">
                 <li><a class="nav-link" href="index.html">Home</a></li>
                 <li><a class="nav-link" href="about.html">About</a></li>
                 <li><a class="nav-link" href="projects.html">Projects</a></li>
@@ -262,6 +300,23 @@
                             <div class="d-flex justify-content-center mt-3 card-footer">
                                 <a href="https://github.com/JainulTrivedi55555/atlas-trading-platform" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
                                 <a href="https://atlas-trading-platform.me/" class="btn btn-primary btn-sm"><i class="bi bi-link-45deg me-1"></i>Webapp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="project-col">
+                    <div class="card fade-card">
+                        <div class="card-img-top card-img-placeholder" role="img" aria-label="Findlark project">
+                            <i class="bi bi-search"></i>
+                            <span>Findlark</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Findlark: A Recruiter Search app</h5>
+                            <p class="card-text">A recruiter search app where users describe the candidates they want in plain English and get back a ranked, pageable list. An LLM (Anthropic API) turns each brief into validated structured filters, while Postgres handles matching and ranking, so the model never sees candidate data. Built with Next.js, TypeScript, and Supabase, it adds shortlists, saved searches, row-level company isolation, and Stripe webhook billing, all on generated demo data.</p>
+                            <div class="d-flex justify-content-center mt-3 card-footer">
+                                <a href="https://github.com/JainulTrivedi55555/findlark" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github me-1"></i> Source Code</a>
                             </div>
                         </div>
                     </div>
@@ -472,7 +527,55 @@
         }, { threshold: 0.2 });
 
         fadeItems.forEach(item => observer.observe(item));
+
+        // "Read more" toggle for descriptions cut off by the fixed-height layout.
+        // Every card gets the same reserved slot so heights stay equal; the button only shows when needed.
+        document.querySelectorAll('.projects-section .card-text').forEach(text => {
+            const slot = document.createElement('div');
+            slot.className = 'read-more';
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.textContent = 'Read more';
+            btn.setAttribute('aria-expanded', 'false');
+            btn.addEventListener('click', () => {
+                const expanded = text.classList.toggle('expanded');
+                btn.textContent = expanded ? 'Show less' : 'Read more';
+                btn.setAttribute('aria-expanded', String(expanded));
+            });
+            slot.appendChild(btn);
+            text.after(slot);
+        });
+
+        // Shrink only titles that overflow their fixed 4-line slot (e.g. very long titles on narrow cards)
+        function fitTitles() {
+            document.querySelectorAll('.projects-section .card-title').forEach(title => {
+                title.style.fontSize = '';
+                let size = parseFloat(getComputedStyle(title).fontSize);
+                const min = size * 0.8;
+                while (title.scrollHeight > title.clientHeight + 1 && size > min) {
+                    size -= 0.5;
+                    title.style.fontSize = size + 'px';
+                }
+            });
+        }
+        fitTitles();
+        window.addEventListener('resize', fitTitles);
+
+        function updateReadMore() {
+            document.querySelectorAll('.projects-section .card-text').forEach(text => {
+                const btn = text.nextElementSibling.querySelector('button');
+                const truncated = text.classList.contains('expanded') || text.scrollHeight > text.clientHeight + 1;
+                btn.style.visibility = truncated ? 'visible' : 'hidden';
+            });
+        }
+        updateReadMore();
+        window.addEventListener('resize', updateReadMore);
+        // Re-measure once web fonts have loaded, since they change text widths
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(() => { fitTitles(); updateReadMore(); });
+        }
     </script>
 
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

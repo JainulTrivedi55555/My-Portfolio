@@ -140,12 +140,16 @@
     }
 
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/theme.css">
 </head>
 <body>
-  <nav class="navbar">
+  <nav class="navbar site-nav" aria-label="Main navigation">
     <div class="container-fluid">
-      <a href="index.html" class="navbar-brand">My Portfolio</a>
-      <ul class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle navigation menu"><i class="bi bi-list" aria-hidden="true"></i><span>Menu</span></button>
+      <ul class="nav-links" id="site-menu">
         <li><a class="nav-link" href="index.html">Home</a></li>
         <li><a class="nav-link" href="about.html">About</a></li>
         <li><a class="nav-link" href="projects.html">Projects</a></li>
@@ -266,5 +270,6 @@
       });
     });
   </script>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
